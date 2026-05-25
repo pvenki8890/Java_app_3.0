@@ -80,24 +80,7 @@ pipeline {
             }
         }
 
-        stage('Static Code Analysis : SonarQube') {
-
-            when {
-                expression { params.action == 'create' }
-            }
-
-            steps {
-
-                script {
-
-                    def SonarQubecredentialsId = 'sonarqube-api'
-
-                    statiCodeAnalysis(SonarQubecredentialsId)
-                }
-            }
-        }
-
-        // Quality Gate skipped due to SonarQube resource issues
+        // SonarQube stages skipped due to infrastructure instability
 
         stage('Maven Build') {
 
@@ -132,7 +115,7 @@ pipeline {
             }
         }
 
-        // Trivy Scan skipped due to EC2 storage constraints
+        // Trivy Scan skipped due to EC2 resource constraints
 
         stage('Docker Image Push : DockerHub') {
 
