@@ -97,9 +97,7 @@ pipeline {
             }
         }
 
-        // Quality Gate Stage Skipped
-        // Reason:
-        // Small EC2 instance causing SonarQube wait timeout/hang
+        // Quality Gate skipped due to SonarQube resource issues
 
         stage('Maven Build') {
 
@@ -134,24 +132,7 @@ pipeline {
             }
         }
 
-        stage('Docker Image Scan : Trivy') {
-
-            when {
-                expression { params.action == 'create' }
-            }
-
-            steps {
-
-                script {
-
-                    dockerImageScan(
-                        "${params.ImageName}",
-                        "${params.ImageTag}",
-                        "${params.DockerHubUser}"
-                    )
-                }
-            }
-        }
+        // Trivy Scan skipped due to EC2 storage constraints
 
         stage('Docker Image Push : DockerHub') {
 
