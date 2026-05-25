@@ -35,7 +35,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-kubernetes-config</artifactId>
-            <version>2.1.9E</version>
+            <version>2.1.9</version>
         </dependency>
 
         <dependency>
